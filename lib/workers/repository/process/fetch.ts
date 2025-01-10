@@ -161,7 +161,11 @@ export async function fetchUpdates(
   const allManagerJobs = managers.map((manager) =>
     fetchManagerUpdates(config, packageFiles, manager),
   );
-  await Promise.all(allManagerJobs);
+  await Promise.allSettled(allManagerJobs).then((results) =>
+    results.forEach((result) =>
+      logger.debug({ result }, 'fetchUpdates promises results'),
+    ),
+  );
   PackageFiles.add(config.baseBranch!, { ...packageFiles });
   logger.debug(
     { baseBranch: config.baseBranch },

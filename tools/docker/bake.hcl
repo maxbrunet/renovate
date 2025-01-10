@@ -1,5 +1,5 @@
 variable "OWNER" {
-  default = "renovatebot"
+  default = "maxbrunet"
 }
 variable "FILE" {
   default = "renovate"
@@ -63,17 +63,11 @@ target "slim" {
   ]
   tags = [
     "ghcr.io/${OWNER}/${FILE}",
-    "${FILE}/${FILE}",
 
     // GitHub versioned tags
     notequal("", RENOVATE_VERSION) ? "ghcr.io/${OWNER}/${FILE}:${RENOVATE_VERSION}": "",
     notequal("", RENOVATE_MAJOR_VERSION) ? "ghcr.io/${OWNER}/${FILE}:${RENOVATE_MAJOR_VERSION}": "",
     notequal("", RENOVATE_MAJOR_MINOR_VERSION) ? "ghcr.io/${OWNER}/${FILE}:${RENOVATE_MAJOR_MINOR_VERSION}": "",
-
-    // Docker Hub versioned tags
-    notequal("", RENOVATE_VERSION) ? "${FILE}/${FILE}:${RENOVATE_VERSION}": "",
-    notequal("", RENOVATE_MAJOR_VERSION) ? "${FILE}/${FILE}:${RENOVATE_MAJOR_VERSION}": "",
-    notequal("", RENOVATE_MAJOR_MINOR_VERSION) ? "${FILE}/${FILE}:${RENOVATE_MAJOR_MINOR_VERSION}": "",
   ]
 }
 
@@ -87,17 +81,11 @@ target "full" {
   ]
   tags = [
     "ghcr.io/${OWNER}/${FILE}:full",
-    "${FILE}/${FILE}:full",
 
     // GitHub versioned tags
     notequal("", RENOVATE_VERSION) ? "ghcr.io/${OWNER}/${FILE}:${RENOVATE_VERSION}-full": "",
     notequal("", RENOVATE_MAJOR_VERSION) ? "ghcr.io/${OWNER}/${FILE}:${RENOVATE_MAJOR_VERSION}-full": "",
     notequal("", RENOVATE_MAJOR_MINOR_VERSION) ? "ghcr.io/${OWNER}/${FILE}:${RENOVATE_MAJOR_MINOR_VERSION}-full": "",
-
-    // Docker Hub versioned tags
-    notequal("", RENOVATE_VERSION) ? "${FILE}/${FILE}:${RENOVATE_VERSION}-full": "",
-    notequal("", RENOVATE_MAJOR_VERSION) ? "${FILE}/${FILE}:${RENOVATE_MAJOR_VERSION}-full": "",
-    notequal("", RENOVATE_MAJOR_MINOR_VERSION) ? "${FILE}/${FILE}:${RENOVATE_MAJOR_MINOR_VERSION}-full": "",
   ]
 }
 
